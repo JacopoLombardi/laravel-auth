@@ -33,6 +33,11 @@ Oggi iniziamo un nuovo progetto che si arricchirà nel corso delle prossime lezi
 
 Creazione del modello 'Project' con relativa migrazione, seeder, controller e rotte e stampare la index  dei progetti (protetta da middleware).
 
+# Day 2
+
+oggi continuate sulla repo di ieri aggiungendo, fra le rotte admin, anche la gestione (CRUD) della tabella “projects”.
+Aggiungete anche due tabelle “technologies” e “types” con le relative CRUD (meglio se su una pagina sola).
+
 
 
 

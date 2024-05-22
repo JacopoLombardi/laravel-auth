@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="container mt-5">
+    <div class="container text-center mt-5">
 
         <h1>Home Dashboard</h1>
 
