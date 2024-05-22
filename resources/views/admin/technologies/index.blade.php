@@ -8,17 +8,16 @@
     <div class="container">
 
         <div class="text-center my-4">
-            <h1>Projects</h1>
+            <h1>Technologies</h1>
         </div>
 
 
         <div class="mb-5">
-            <h5>Aggiungi un Progetto:</h5>
+            <h5>Aggiungi una Technologies:</h5>
 
-            <form class="d-flex my-3" action="{{ route('admin.projects.store') }}" method="POST">
+            <form class="d-flex my-3" action="{{ route('admin.technologies.store') }}" method="POST">
                 @csrf
-                <input class="form-control me-4 w-25" placeholder="Titolo" type="text" name="title">
-                <input class="form-control me-4 w-25" placeholder="Descrizione" type="text" name="description">
+                <input class="form-control me-4 w-25" placeholder="Name" type="text" name="name">
                 <button class="btn btn-success" type="submit">aggiungi</button>
             </form>
         </div>
@@ -44,36 +43,23 @@
             <table class="table w-75">
                 <thead>
                     <tr class="fs-5">
-                        <th scope="col">Titolo</th>
-                        <th scope="col">Descrizione</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ($projects as $project)
+                    @foreach ($technologies as $technology)
                         <tr>
                             <td>
                                 <form
-                                  action="{{ route('admin.projects.update', $project) }}"
+                                  action="{{ route('admin.technologies.update', $technology) }}"
                                   method="POST"
-                                  id="form-edit-{{ $project->id }}"
+                                  id="form-edit-{{ $technology->id }}"
                                   >
                                     @csrf
                                     @method('PUT')
-                                    <input class="w-100" value="{{ $project->title }}" name="title">
-                                </form>
-                            </td>
-
-                            <td>
-                                <form
-                                  action="{{ route('admin.projects.update', $project) }}"
-                                  method="POST"
-                                  id="form-edit-{{ $project->id }}"
-                                  >
-                                    @csrf
-                                    @method('PUT')
-                                    <textarea class="w-100" name="" cols="30" rows="2" name="description">{{ $project->description }}</textarea>
+                                    <input class="w-100" value="{{ $technology->name }}" name="name">
                                 </form>
                             </td>
 
@@ -81,16 +67,15 @@
                             <td class="d-flex">
                                 <button
                                   class="btn btn-warning me-2 h-50"
-                                  onclick="submitForm( {{ $project->id }} )"
+                                  onclick="submitForm( {{ $technology->id }} )"
                                   ><i class="fa-solid fa-pencil"></i></button>
 
 
-                                <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                                <form action="{{ route('admin.technologies.destroy', $technology) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
-
 
                             </td>
 
@@ -102,10 +87,7 @@
         </div>
     </div>
 
-
-
 @endsection
-
 
 
 <script>

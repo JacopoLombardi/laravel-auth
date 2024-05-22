@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Technology;
 
 class TechnologyController extends Controller
 {
@@ -12,7 +13,9 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        //
+        $technologies = Technology::All();
+
+        return view('admin.technologies.index', compact('technologies'));
     }
 
     /**
@@ -28,7 +31,16 @@ class TechnologyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exist = Technology::where('name', $request->name)->first();
+        if($exist){
+            return redirect()->route('admin.technologies.index')->with('error', 'Technology già esistente');
+        }else{
+            $new_technology = new Technology();
+            $new_technology->name = $request->name;
+            $new_technology->save();
+
+            return redirect()->route('admin.technologies.index')->with('success', 'Technology aggiunta correttamente');
+        }
     }
 
     /**
@@ -50,16 +62,34 @@ class TechnologyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Technology $technology)
     {
-        //
+        $validate_data = $request->validate([
+            'name' => 'required|min:2|max:50'
+        ],
+        [
+            'name.required' => 'Il name è obbligatorio',
+            'name.min' => 'Il name deve contenere almeno :min caratteri',
+            'name.max' => 'Il name deve contenere massimo :max caratteri'
+        ]);
+
+
+
+        $exist = Technology::where('name', $request->name)->first();
+        if($exist){
+            return redirect()->route('admin.technologies.index')->with('error', 'Technology non modificata perchè già esistente');
+        }else{
+            $technology->update($validate_data);
+            return redirect()->route('admin.technologies.index')->with('success', 'Technology modificata correttamente');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+        return redirect()->route('admin.technologies.index')->with('success', 'Technology eliminata correttamente');
     }
 }

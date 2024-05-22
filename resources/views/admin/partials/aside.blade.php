@@ -6,7 +6,7 @@
         </li>
 
         <li>
-            <a href=""><i class="fa-solid fa-compass-drafting"></i>Technology</a>
+            <a href="{{ route('admin.technologies.index') }}"><i class="fa-solid fa-compass-drafting"></i>Technology</a>
         </li>
 
         <li>

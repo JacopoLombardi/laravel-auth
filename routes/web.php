@@ -38,8 +38,13 @@ Route::middleware(['auth', 'verified'])
                 'created', 'edit', 'show'
             ]);
 
-            Route::resource('technologies', TechnologyController::class);
-            Route::resource('types', TypeController::class);
+            Route::resource('technologies', TechnologyController::class)->except([
+                'created', 'edit', 'show'
+            ]);
+
+            Route::resource('types', TypeController::class)->except([
+                'created', 'edit', 'show'
+            ]);
         });
 
 
