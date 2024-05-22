@@ -37,6 +37,14 @@ aside{
             td:last-child{
                 height: 100px;
             }
+            input{
+                border: none;
+                outline: none;
+            }
+            textarea{
+                border: none;
+                outline: none;
+            }
         }
     }
 }

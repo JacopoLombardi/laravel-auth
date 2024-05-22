@@ -24,7 +24,7 @@
         </div>
 
 
-
+        {{-- messaggi in caso di aggiunta di un Project --}}
         @if (session('error'))
             <div class="alert alert-danger text-center w-50 mb-5" role="alert">
                 {{ session('error') }}
@@ -37,7 +37,7 @@
                 {{ session('success') }}
             </div>
         @endif
-
+        {{-- /////////////////// --}}
 
 
         <div class="container_table">
@@ -53,20 +53,46 @@
 
                     @foreach ($projects as $project)
                         <tr>
-                            <th>{{ $project->title }}</th>
-                            <td>{{ $project->description }}</td>
+                            <td>
+                                <form
+                                  action="{{ route('admin.projects.update', $project) }}"
+                                  method="POST"
+                                  id="form-edit-{{ $project->id }}"
+                                  >
+                                    @csrf
+                                    @method('PUT')
+                                    <input class="w-100" value="{{ $project->title }}" name="title">
+                                </form>
+                            </td>
 
-
-
-
-                            <td class="d-flex">
-                                <button class="btn btn-warning me-2"><i class="fa-solid fa-pencil"></i></button>
-
-                                <button class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                            <td>
+                                <form
+                                  action="{{ route('admin.projects.update', $project) }}"
+                                  method="POST"
+                                  id="form-edit-{{ $project->id }}"
+                                  >
+                                    @csrf
+                                    @method('PUT')
+                                    <textarea class="w-100" name="" cols="30" rows="2" name="description">{{ $project->description }}</textarea>
+                                </form>
                             </td>
 
 
+                            <td class="d-flex">
+                                <button
+                                  class="btn btn-warning me-2"
+                                  onclick="submitForm( {{ $project->id }} )"
+                                  ><i class="fa-solid fa-pencil"></i></button>
 
+
+                                <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                </form>
+
+
+                            </td>
 
                         </tr>
                     @endforeach
@@ -79,3 +105,16 @@
 
 
 @endsection
+
+
+
+<script>
+
+    function submitForm(id){
+        const form = document.getElementById(`form-edit-${id}`);
+        form.submit();
+    }
+
+
+
+</script>
