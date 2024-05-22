@@ -10,7 +10,7 @@
         </li>
 
         <li>
-            <a href=""><i class="fa-solid fa-table-list"></i>Type</a>
+            <a href="{{ route('admin.types.index') }}"><i class="fa-solid fa-table-list"></i>Type</a>
         </li>
     </ul>
 </aside>
