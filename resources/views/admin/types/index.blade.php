@@ -64,21 +64,27 @@
                             </td>
 
 
-                            <td class="d-flex">
-                                <button
-                                  class="btn btn-warning me-2 h-50"
-                                  onclick="submitForm( {{ $type->id }} )"
-                                  ><i class="fa-solid fa-pencil"></i></button>
+                            <td>
+                                <div class="d-flex">
+                                    <button
+                                      class="btn btn-warning me-2"
+                                      onclick="submitForm( {{ $type->id }} )"
+                                    ><i class="fa-solid fa-pencil"></i>
+                                    </button>
 
 
-                                <form action="{{ route('admin.types.destroy', $type) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
+                                    <form
+                                    class="mb-0"
+                                    action="{{ route('admin.types.destroy', $type) }}"
+                                    method="POST"
+                                    >
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
+                                </div>
 
                             </td>
-
                         </tr>
                     @endforeach
 
@@ -90,13 +96,13 @@
 @endsection
 
 
+
+
 <script>
 
     function submitForm(id){
         const form = document.getElementById(`form-edit-${id}`);
         form.submit();
     }
-
-
 
 </script>

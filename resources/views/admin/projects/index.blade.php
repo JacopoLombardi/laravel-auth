@@ -73,25 +73,29 @@
                                   >
                                     @csrf
                                     @method('PUT')
-                                    <textarea class="w-100" name="" cols="30" rows="2" name="description">{{ $project->description }}</textarea>
+                                    <textarea class="descr_textarea w-75" cols="30" rows="2" name="description">{{ $project->description }}</textarea>
                                 </form>
                             </td>
 
 
-                            <td class="d-flex">
-                                <button
-                                  class="btn btn-warning me-2 h-50"
-                                  onclick="submitForm( {{ $project->id }} )"
-                                  ><i class="fa-solid fa-pencil"></i></button>
+                            <td>
+                                <div class="d-flex">
+                                    <button
+                                      class="btn btn-warning me-2 h-50"
+                                      onclick="submitForm( {{ $project->id }} )"
+                                      ><i class="fa-solid fa-pencil"></i>
+                                    </button>
 
 
-                                <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
-
-
+                                    <form
+                                      action="{{ route('admin.projects.destroy', $project) }}"
+                                      method="POST"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
+                                </div>
                             </td>
 
                         </tr>

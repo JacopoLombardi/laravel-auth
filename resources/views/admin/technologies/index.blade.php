@@ -64,18 +64,26 @@
                             </td>
 
 
-                            <td class="d-flex">
-                                <button
-                                  class="btn btn-warning me-2 h-50"
-                                  onclick="submitForm( {{ $technology->id }} )"
-                                  ><i class="fa-solid fa-pencil"></i></button>
+                            <td>
+                                <div class="d-flex">
+                                    <button
+                                      class="btn btn-warning me-2"
+                                      onclick="submitForm( {{ $technology->id }} )"
+                                    ><i class="fa-solid fa-pencil"></i>
+                                    </button>
 
 
-                                <form action="{{ route('admin.technologies.destroy', $technology) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
-                                </form>
+                                    <form
+                                      class="mb-0"
+                                      action="{{ route('admin.technologies.destroy', $technology) }}"
+                                      method="POST"
+                                    >
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                                    </form>
+                                </div>
+
 
                             </td>
 
@@ -90,13 +98,13 @@
 @endsection
 
 
+
+
 <script>
 
     function submitForm(id){
         const form = document.getElementById(`form-edit-${id}`);
         form.submit();
     }
-
-
 
 </script>
