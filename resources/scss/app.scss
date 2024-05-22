@@ -1,1 +1,26 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+
+aside{
+    height: calc(100vh - 73px);
+    width: 200px;
+    ul{
+        list-style: none;
+        li{
+            line-height: 40px;
+            a{
+                text-decoration: none;
+                color: white;
+                font-size: 1.3rem;
+                font-weight: 600;
+                &:hover{
+                    color: rgb(192, 192, 192);
+                }
+                i{
+                    width: 20px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
