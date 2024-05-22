@@ -2,7 +2,7 @@
 <aside class="bg-dark text-white pt-5">
     <ul>
         <li>
-            <a href=""><i class="fa-solid fa-sheet-plastic"></i>Project</a>
+            <a href="{{ route('admin.projects.index') }}"><i class="fa-solid fa-sheet-plastic"></i>Project</a>
         </li>
 
         <li>

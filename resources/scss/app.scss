@@ -24,3 +24,19 @@ aside{
         }
     }
 }
+
+
+
+
+.container_table{
+    height: 500px;
+    overflow: auto;
+    tbody{
+        tr{
+            height: 100px;
+            td:last-child{
+                height: 100px;
+            }
+        }
+    }
+}
