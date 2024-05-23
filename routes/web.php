@@ -33,10 +33,8 @@ Route::middleware(['auth', 'verified'])
         ->group(function(){
             Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-            // qua inserisco tutte le rotte delle CRUD
-            Route::resource('projects', ProjectController::class)->except([
-                'created', 'edit', 'show'
-            ]);
+            // qua si inseriscono tutte le rotte delle CRUD Admin
+            Route::resource('projects', ProjectController::class);
 
             Route::resource('technologies', TechnologyController::class)->except([
                 'created', 'edit', 'show'

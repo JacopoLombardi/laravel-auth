@@ -6,6 +6,10 @@
         </li>
 
         <li>
+            <a href="{{ route('admin.projects.create') }}"><i class="fa-solid fa-file-circle-plus"></i>New Project</a>
+        </li>
+
+        <li>
             <a href="{{ route('admin.technologies.index') }}"><i class="fa-solid fa-compass-drafting"></i>Technology</a>
         </li>
 

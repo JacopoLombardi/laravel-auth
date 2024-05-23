@@ -13,7 +13,7 @@
 
 
         <div class="mb-5">
-            <h5>Aggiungi una Technologies:</h5>
+            <h5>Aggiungi una Technology:</h5>
 
             <form class="d-flex my-3" action="{{ route('admin.technologies.store') }}" method="POST">
                 @csrf

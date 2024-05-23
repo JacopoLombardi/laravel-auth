@@ -12,17 +12,6 @@
         </div>
 
 
-        <div class="mb-5">
-            <h5>Aggiungi un Progetto:</h5>
-
-            <form class="d-flex my-3" action="{{ route('admin.projects.store') }}" method="POST">
-                @csrf
-                <input class="form-control me-4 w-25" placeholder="Titolo" type="text" name="title">
-                <input class="form-control me-4 w-25" placeholder="Descrizione" type="text" name="description">
-                <button class="btn btn-success" type="submit">aggiungi</button>
-            </form>
-        </div>
-
 
         {{-- messaggi in caso di aggiunta di un Project --}}
         @if (session('error'))
@@ -53,38 +42,23 @@
 
                     @foreach ($projects as $project)
                         <tr>
-                            <td>
-                                <form
-                                  action="{{ route('admin.projects.update', $project) }}"
-                                  method="POST"
-                                  id="form-edit-{{ $project->id }}"
-                                  >
-                                    @csrf
-                                    @method('PUT')
-                                    <input class="w-100" value="{{ $project->title }}" name="title">
-                                </form>
-                            </td>
+                            <td>{{ $project->title }}</td>
 
-                            <td>
-                                <form
-                                  action="{{ route('admin.projects.update', $project) }}"
-                                  method="POST"
-                                  id="form-edit-{{ $project->id }}"
-                                  >
-                                    @csrf
-                                    @method('PUT')
-                                    <textarea class="descr_textarea w-75" cols="30" rows="2" name="description">{{ $project->description }}</textarea>
-                                </form>
-                            </td>
-
+                            <td>{{ $project->description }}</td>
 
                             <td>
                                 <div class="d-flex">
-                                    <button
+                                    <a
+                                      href="{{ route('admin.projects.show', $project) }}"
+                                      class="btn btn-success me-2 h-50"
+                                      ><i class="fa-solid fa-eye"></i>
+                                    </a>
+
+                                    <a
+                                      href=""
                                       class="btn btn-warning me-2 h-50"
-                                      onclick="submitForm( {{ $project->id }} )"
                                       ><i class="fa-solid fa-pencil"></i>
-                                    </button>
+                                    </a>
 
 
                                     <form
@@ -110,15 +84,3 @@
 
 @endsection
 
-
-
-<script>
-
-    function submitForm(id){
-        const form = document.getElementById(`form-edit-${id}`);
-        form.submit();
-    }
-
-
-
-</script>
