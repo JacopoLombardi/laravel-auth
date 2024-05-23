@@ -8,7 +8,7 @@
             <div class="d-flex align-items-center">
                 <p class="fw-bold  text-capitalize fs-4 m-0 me-5">{{ Auth::user()->name }}</p>
 
-                <form class="mt-4" action="{{ route('logout') }}" method="POST">
+                <form class="mb-0 mt-1" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger fw-semibold fs-5 rounded-5 px-3 py-1">Log Out</button>
                 </form>

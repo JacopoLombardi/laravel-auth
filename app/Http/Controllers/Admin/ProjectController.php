@@ -32,16 +32,17 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request)
     {
+        $form_data = $request->all();
+
         $exist = Project::where('title', $request->title)->first();
         if($exist){
-            return redirect()->route('admin.projects.index')->with('error', 'Progetto già esistente');
+            return redirect()->route('admin.projects.create')->with('error', 'Progetto già esistente');
         }else{
             $new_project = new Project();
-            $new_project->title = $request->title;
-            $new_project->description = $request->description;
+            $new_project->fill($form_data);
             $new_project->save();
 
-            return redirect()->route('admin.projects.index')->with('success', 'Progetto aggiunto correttamente');
+            return redirect()->route('admin.projects.show', $new_project)->with('success', 'Progetto aggiunto correttamente');
         }
     }
 
@@ -56,34 +57,24 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
-
-        $validate_data = $request->validate([
-            'title' => 'required|min:5|max:100'
-        ],
-        [
-            'title.required' => 'Il titolo è obbligatorio',
-            'title.min' => 'Il titolo deve contenere almeno :min caratteri',
-            'title.max' => 'Il titolo deve contenere massimo :max caratteri'
-        ]);
-
-
+        $form_data = $request->all();
 
         $exist = Project::where('title', $request->title)->first();
         if($exist){
-            return redirect()->route('admin.projects.index')->with('error', 'Progetto non modificato perchè già esistente');
+            return redirect()->route('admin.projects.edit', $project)->with('error', 'Progetto non modificato perchè già esistente');
         }else{
-            $project->update($validate_data);
-            return redirect()->route('admin.projects.index')->with('success', 'Progetto modificato correttamente');
+            $project->update($form_data);
+            return redirect()->route('admin.projects.show', $project)->with('success', 'Progetto modificato correttamente');
         }
     }
 
@@ -94,6 +85,5 @@ class ProjectController extends Controller
     {
         $project->delete();
         return redirect()->route('admin.projects.index')->with('success', 'Progetto eliminato correttamente');
-
     }
 }

@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="text-center my-5">
-            <h1>Inserisci un nuovo Progetto</h1>
+            <h1>Modifica il Progetto {{ $project->title }}</h1>
         </div>
 
 
@@ -34,22 +34,30 @@
         <div>
             <h5>Aggiungi un Progetto:</h5>
 
-            <form class="my-3" action="{{ route('admin.projects.store') }}" method="POST">
+            <form class="my-3" action="{{ route('admin.projects.update', $project) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <input
                   class="form-control w-50 @error ('title') is-invalid @enderror" placeholder="Titolo"
                   type="text"
                   name="title"
-                  value="{{ old('title') }}"
+                  value="{{ old('title', $project->title) }}"
                 >
 
                 @error('title')
                     <h6 class="text-danger">{{ $message }}</h6>
                 @enderror
 
-                <textarea class="form-control w-50 my-4" placeholder="Descrizione" name="description" cols="30" rows="5" name="description"></textarea>
+                <textarea
+                  class="form-control w-50 my-4"
+                  placeholder="Descrizione"
+                  name="description"
+                  cols="30"
+                  rows="5"
+                  name="description">{{ $project->description }}
+                </textarea>
 
-                <button class="btn btn-success" type="submit">aggiungi</button>
+                <button class="btn btn-success" type="submit">modifica</button>
             </form>
         </div>
     </div>

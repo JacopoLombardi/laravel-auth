@@ -13,17 +13,10 @@
 
 
 
-        {{-- messaggi in caso di aggiunta di un Project --}}
+        {{-- messaggio in caso di aggiunta corretta di un Project --}}
         @if (session('error'))
             <div class="alert alert-danger text-center w-50 mb-5" role="alert">
                 {{ session('error') }}
-            </div>
-        @endif
-
-
-        @if (session('success'))
-            <div class="alert alert-success text-center w-50 mb-5" role="alert">
-                {{ session('success') }}
             </div>
         @endif
         {{-- /////////////////// --}}
@@ -55,7 +48,7 @@
                                     </a>
 
                                     <a
-                                      href=""
+                                      href="{{ route('admin.projects.edit', $project) }}"
                                       class="btn btn-warning me-2 h-50"
                                       ><i class="fa-solid fa-pencil"></i>
                                     </a>
